@@ -16,7 +16,7 @@ void DialogAnalysisEdit::createUI()
     connect(btnOk, &QPushButton::clicked, this, &DialogAnalysisEdit::onAccepted);
 
     btnCancel = new QPushButton(tr("Cancel"));
-    connect(btnCancel, &QPushButton::clicked, this, &QDialog::rejected);
+    connect(btnCancel, &QPushButton::clicked, this, &QDialog::reject);
 
     QLabel *lblInstanceName = new QLabel(tr("Instance:"));
     QLabel *lblDishName = new QLabel(tr("Dish name:"));
@@ -69,5 +69,6 @@ void DialogAnalysisEdit::readForm()
 
 void DialogAnalysisEdit::onAccepted()
 {
-
+    readForm();
+    emit DialogAnalysisEdit::accept();
 }

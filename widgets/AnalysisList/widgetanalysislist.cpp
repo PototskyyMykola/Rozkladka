@@ -2,6 +2,7 @@
 
 #include "widgetanalysislist.h"
 #include "dialogs/dialoganalysisedit.h"
+#include "dialogs/dialogreceiptedit.h"
 #include "models/modelanalysislist.h"
 #include "analysis.h"
 
@@ -54,5 +55,8 @@ void WidgetAnalysisList::slotNewAanalysis()
     currentAnalysis->setID(++maxId);
 
     DialogAnalysisEdit dialogNew(currentAnalysis);
-    dialogNew.exec();
+    if(dialogNew.exec()){
+        DialogReceiptEdit dialogNewReceipt;
+        dialogNewReceipt.exec();
+    }
 }
