@@ -4,8 +4,8 @@
 
 #include "widgetingredients.h"
 #include "dialogs/dialogingredientedit.h"
-#include "models/modeltableingredient.h"
-#include "ingredient.h"
+#include "viewmodels/modeltableingredient.h"
+#include "datamodels/ingredient.h"
 
 WidgetIngredients::WidgetIngredients(QWidget *parent)
     : QWidget{parent}

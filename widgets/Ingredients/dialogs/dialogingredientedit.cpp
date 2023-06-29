@@ -1,7 +1,7 @@
 #include <QtWidgets>
 
 #include "dialogingredientedit.h"
-#include "../ingredient.h"
+#include "../datamodels/ingredient.h"
 
 DialogIngredientEdit::DialogIngredientEdit(Ingredient * ingredient)
 {

@@ -3,8 +3,8 @@
 #include "widgetanalysislist.h"
 #include "dialogs/dialoganalysisedit.h"
 #include "dialogs/dialogreceiptedit.h"
-#include "models/modelanalysislist.h"
-#include "analysis.h"
+#include "viewmodels/modelanalysislist.h"
+#include "datamodels/analysis.h"
 
 WidgetAnalysisList::WidgetAnalysisList(QWidget *parent)
     : QWidget{parent}
@@ -56,7 +56,7 @@ void WidgetAnalysisList::slotNewAanalysis()
 
     DialogAnalysisEdit dialogNew(currentAnalysis);
     if(dialogNew.exec()){
-        DialogReceiptEdit dialogNewReceipt;
+        DialogReceiptEdit dialogNewReceipt(currentAnalysis);
         dialogNewReceipt.exec();
     }
 }

@@ -1,5 +1,5 @@
 #include "modelanalysislist.h"
-#include "../analysis.h"
+#include "../datamodels/analysis.h"
 
 ModelAnalysisList::ModelAnalysisList(QObject *parent)
     : QAbstractTableModel{parent}

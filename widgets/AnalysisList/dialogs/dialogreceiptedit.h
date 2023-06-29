@@ -6,9 +6,12 @@
 QT_BEGIN_NAMESPACE
 class QTableView;
 class QPushButton;
+class QAbstractTableModel;
 QT_END_NAMESPACE
 
 class Analysis;
+class ModelIngredientList;
+class ModelReceipt;
 
 class DialogReceiptEdit : public QDialog
 {
@@ -16,6 +19,7 @@ public:
     DialogReceiptEdit(Analysis *);
 private:
     void createUI();
+    void createModels();
 
     QTableView *tvIngredients;
     QTableView *tvReceipt;
@@ -26,6 +30,11 @@ private:
     QPushButton *btnCancel;
 
     Analysis *currentAnalysis;
+
+    QAbstractTableModel *modelIngredientList;
+    QAbstractTableModel *modelReceipt;
+private slots:
+    void onAccepted();
 };
 
 #endif // DIALOGRECEIPTEDIT_H

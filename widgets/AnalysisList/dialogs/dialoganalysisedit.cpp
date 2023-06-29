@@ -1,7 +1,7 @@
 #include <QtWidgets>
 
 #include "dialoganalysisedit.h"
-#include "../analysis.h"
+#include "../datamodels/analysis.h"
 
 DialogAnalysisEdit::DialogAnalysisEdit(Analysis *analysis)
 {
