@@ -16,6 +16,7 @@ public:
 
 private:
     QStringList *mData;
+    void loadFromDB(); // DB must bee connected separately
 };
 
 #endif // MODELINGREDIENTLIST_H

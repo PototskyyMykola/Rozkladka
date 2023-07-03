@@ -19,9 +19,11 @@ void DialogReceiptEdit::createUI()
 
     tvIngredients = new QTableView;
     tvIngredients->setModel(modelIngredientList);
+    tvIngredients->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
 
     tvReceipt = new QTableView;
     tvReceipt->setModel(modelReceipt);
+    tvReceipt->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
 
     btnAddIngredient = new QPushButton(tr("Add"));
     btnRemoveIngredient = new QPushButton(tr("Remove"));

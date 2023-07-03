@@ -6,8 +6,11 @@
 DialogAnalysisEdit::DialogAnalysisEdit(Analysis *analysis)
 {
     currentAnalysis = analysis;
+    qDebug() << " aalysis asigned";
     createUI();
+    qDebug() << "UI created";
     fillForm();
+    qDebug() << "form filled from data";
 }
 
 void DialogAnalysisEdit::createUI()

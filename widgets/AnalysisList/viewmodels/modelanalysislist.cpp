@@ -1,10 +1,11 @@
 #include "modelanalysislist.h"
 #include "../datamodels/analysis.h"
 
-ModelAnalysisList::ModelAnalysisList(QObject *parent)
+ModelAnalysisList::ModelAnalysisList(QVector<Analysis> *data, QObject *parent)
     : QAbstractTableModel{parent}
 {
     mData = new QVector<Analysis>;
+    mData = data;
 }
 
 int ModelAnalysisList::rowCount(const QModelIndex &/*parent*/) const

@@ -1,9 +1,12 @@
+#include <QSqlQuery>
+
 #include "modelingredientlist.h"
 
 ModelIngredientList::ModelIngredientList(QObject *parent)
     : QAbstractTableModel{parent}
 {
     mData = new QStringList;
+    loadFromDB();
 }
 
 int ModelIngredientList::rowCount(const QModelIndex &/*parent*/) const
@@ -36,4 +39,13 @@ QVariant ModelIngredientList::headerData(int section, Qt::Orientation orientatio
     }
     return QVariant();
 
+}
+
+void ModelIngredientList::loadFromDB()
+{
+    QSqlQuery query;
+    query.exec("SELECT name FROM ingredient");
+    while(query.next()){
+        mData->append(query.value(0).toString());
+    }
 }

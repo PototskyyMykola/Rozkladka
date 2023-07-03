@@ -1,4 +1,5 @@
 #include <QtWidgets>
+#include <QSqlQuery>
 
 #include "widgetanalysislist.h"
 #include "dialogs/dialoganalysisedit.h"
@@ -9,7 +10,10 @@
 WidgetAnalysisList::WidgetAnalysisList(QWidget *parent)
     : QWidget{parent}
 {
+    mData = new QVector<Analysis>;
     createModel();
+    loadFromDB();
+
     createUI();
     currentAnalysis = new Analysis;
 }
@@ -27,16 +31,25 @@ void WidgetAnalysisList::createUI()
     tv->selectRow(0);
 
     btnAnalysisNew = new QPushButton(tr("Add analysis"));
-    connect(btnAnalysisNew, &QPushButton::clicked, this, &WidgetAnalysisList::slotNewAanalysis);
+    connect(btnAnalysisNew, &QPushButton::clicked, this, &WidgetAnalysisList::slotAanalysisNew);
 
     btnAnalysisEdit = new QPushButton(tr("Edit analysis"));
+    connect(btnAnalysisEdit, &QPushButton::clicked, this, &WidgetAnalysisList::slotAnalysisEdit);
+
     btnAnalysisRemove = new QPushButton(tr("Remove analysis"));
+    connect(btnAnalysisRemove, &QPushButton::clicked, this, &WidgetAnalysisList::slotAnalysisRemove);
+
+    btnAnalysisView = new QPushButton(tr("View analysis"));
+    connect(btnAnalysisView, &QPushButton::clicked, this, &WidgetAnalysisList::slotAnalysisView);
+
     btnAnalysisPrint = new QPushButton(tr("Print analysis"));
+    connect(btnAnalysisPrint, &QPushButton::clicked, this, &WidgetAnalysisList::slotAnalysisPrint);
 
     QVBoxLayout *buttonsLayout = new QVBoxLayout;
     buttonsLayout->addWidget(btnAnalysisNew);
     buttonsLayout->addWidget(btnAnalysisEdit);
     buttonsLayout->addWidget(btnAnalysisRemove);
+    buttonsLayout->addWidget(btnAnalysisView);
     buttonsLayout->addWidget(btnAnalysisPrint);
     buttonsLayout->addStretch();
 
@@ -46,10 +59,38 @@ void WidgetAnalysisList::createUI()
 
 void WidgetAnalysisList::createModel()
 {
-    modelTableAnalysis = new ModelAnalysisList(this);
+    modelTableAnalysis = new ModelAnalysisList(mData, this);
 }
 
-void WidgetAnalysisList::slotNewAanalysis()
+void WidgetAnalysisList::loadFromDB()
+{
+    QSqlQuery query;
+    query.exec("SELECT id, instance, dishname, date, weight FROM analysis");
+    while(query.next()){
+        Analysis analysis;
+        analysis.setID(query.value(0).toInt());
+        analysis.setIstance(query.value(1).toString());
+        analysis.setDishName(query.value(2).toString());
+        analysis.setDate(query.value(3).toDate());
+        analysis.setWeight(query.value(4).toFloat());
+        mData->append(analysis);
+    }
+
+    query.exec("SELECT MAX(id) FROM analysis");
+    query.next();
+    maxId = query.value(0).toInt();
+
+}
+
+Analysis *WidgetAnalysisList::getSelectedAnalysis()
+{
+    const QModelIndex index = tv->selectionModel()->currentIndex();
+    int selectedRow = index.row();
+    QVector<Analysis>::Iterator i = mData->begin();
+    return i+selectedRow;
+}
+
+void WidgetAnalysisList::slotAanalysisNew()
 {
     currentAnalysis->clear();
     currentAnalysis->setID(++maxId);
@@ -59,4 +100,30 @@ void WidgetAnalysisList::slotNewAanalysis()
         DialogReceiptEdit dialogNewReceipt(currentAnalysis);
         dialogNewReceipt.exec();
     }
+}
+
+void WidgetAnalysisList::slotAnalysisEdit()
+{
+    currentAnalysis = getSelectedAnalysis();
+    qDebug() << currentAnalysis->getID();
+    DialogAnalysisEdit dialogEdit(currentAnalysis);
+    if(dialogEdit.exec()){
+        DialogReceiptEdit dialogReceiptEdit(currentAnalysis);
+        dialogReceiptEdit.exec();
+    }
+}
+
+void WidgetAnalysisList::slotAnalysisRemove()
+{
+
+}
+
+void WidgetAnalysisList::slotAnalysisView()
+{
+
+}
+
+void WidgetAnalysisList::slotAnalysisPrint()
+{
+
 }

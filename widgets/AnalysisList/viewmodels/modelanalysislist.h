@@ -10,6 +10,7 @@ class ModelAnalysisList : public QAbstractTableModel
     Q_OBJECT
 public:
     explicit ModelAnalysisList(QObject *parent = nullptr);
+    explicit ModelAnalysisList(QVector<Analysis> *data, QObject *parent = nullptr);
 
     int rowCount(const QModelIndex &parent) const;
     int columnCount(const QModelIndex &parent) const;
@@ -18,6 +19,7 @@ public:
 
 private:
     QVector<Analysis> *mData;
+    void loadFromDB(); // DB connect separately before`
 };
 
 #endif // MODELANALYSISLIST_H

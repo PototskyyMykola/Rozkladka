@@ -20,11 +20,14 @@ public:
     void analysisNew();
     void analysisEdit();
     void analysisRemove();
+    void analysisView();
     void analysisPrint();
 
 private:
     void createUI();
     void createModel();
+    void loadFromDB();
+    Analysis *getSelectedAnalysis();
 
     Analysis *currentAnalysis;
 
@@ -34,6 +37,7 @@ private:
     QPushButton *btnAnalysisNew;
     QPushButton *btnAnalysisEdit;
     QPushButton *btnAnalysisRemove;
+    QPushButton *btnAnalysisView;
     QPushButton *btnAnalysisPrint;
 
     QDialog *dialogEdit;
@@ -41,9 +45,14 @@ private:
     QDialog *receiptEdit;
 
     int maxId;
+    QVector<Analysis> *mData;
 
 private slots:
-    void slotNewAanalysis();
+    void slotAanalysisNew();
+    void slotAnalysisEdit();
+    void slotAnalysisRemove();
+    void slotAnalysisView();
+    void slotAnalysisPrint();
 signals:
 
 };
