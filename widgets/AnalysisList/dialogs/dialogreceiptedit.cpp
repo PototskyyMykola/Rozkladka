@@ -45,5 +45,7 @@ void DialogReceiptEdit::createUI()
 void DialogReceiptEdit::createModels()
 {
     modelIngredientList = new ModelIngredientList;
-    modelReceipt = new ModelReceipt;
+    qDebug() << "created ingredient list model";
+    modelReceipt = new ModelReceipt(currentAnalysis->getID());
+    qDebug() << "created receipt model with ID=" << currentAnalysis->getID();
 }

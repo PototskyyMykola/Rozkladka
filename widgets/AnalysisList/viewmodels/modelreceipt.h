@@ -8,7 +8,7 @@ class ReceiptRecord;
 class ModelReceipt : public QAbstractTableModel
 {
 public:
-    explicit ModelReceipt(QObject *parent = nullptr);
+    explicit ModelReceipt(int analysisId, QObject *parent = nullptr);
 
     // QAbstractItemModel interface
 public:
@@ -18,6 +18,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 private:
     QVector<ReceiptRecord> *mData;
+    void loadFromDB(int id);
 };
 
 #endif // MODELRECEIPT_H

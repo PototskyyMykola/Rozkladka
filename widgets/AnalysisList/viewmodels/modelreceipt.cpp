@@ -1,10 +1,16 @@
+#include <QSqlQuery>
+#include <QDebug>
+
 #include "modelreceipt.h"
 #include "../datamodels/receiptrecord.h"
 
-ModelReceipt::ModelReceipt(QObject *parent)
+ModelReceipt::ModelReceipt(int analysisId, QObject *parent)
     : QAbstractTableModel{parent}
 {
     mData = new QVector<ReceiptRecord>;
+    if(analysisId != 0){
+        loadFromDB(analysisId);
+    }
 }
 
 int ModelReceipt::rowCount(const QModelIndex &/*parent*/) const
@@ -45,4 +51,20 @@ QVariant ModelReceipt::headerData(int section, Qt::Orientation orientation, int 
         }
     }
     return QVariant();
+}
+
+void ModelReceipt::loadFromDB(int id)
+{
+    QSqlQuery query;
+    query.prepare("SELECT ingredient, weight FROM receipt WHERE analysisid=:id;");
+    query.bindValue(":id", id);
+    query.exec();
+    while(query.next()){
+        ReceiptRecord record;
+        record.setIngredientName(query.value(0).toString());
+        record.setIngredientWeight(query.value(1).toFloat());
+        mData->append(record);
+    }
+    qDebug() << "query prepared string: " << query.executedQuery();
+    qDebug() << "model receipt - loaded record count=" << mData->size();
 }
