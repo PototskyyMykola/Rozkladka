@@ -4,12 +4,16 @@
 #include "modelreceipt.h"
 #include "../datamodels/receiptrecord.h"
 
-ModelReceipt::ModelReceipt(int analysisId, QObject *parent)
+ModelReceipt::ModelReceipt(QVector<ReceiptRecord> *data, QObject *parent)
     : QAbstractTableModel{parent}
 {
-    mData = new QVector<ReceiptRecord>;
-    if(analysisId != 0){
-        loadFromDB(analysisId);
+//    qDebug() << "modelreceipt - constructor";
+    if(data != nullptr){
+        mData = data;
+        qDebug() << "pointer received " << mData->count();
+    } else {
+        mData = new QVector<ReceiptRecord>;
+        qDebug() << "pointer was NULL";
     }
 }
 
@@ -53,18 +57,27 @@ QVariant ModelReceipt::headerData(int section, Qt::Orientation orientation, int 
     return QVariant();
 }
 
-void ModelReceipt::loadFromDB(int id)
+void ModelReceipt::addIngredient(QString ingredName)
 {
-    QSqlQuery query;
-    query.prepare("SELECT ingredient, weight FROM receipt WHERE analysisid=:id;");
-    query.bindValue(":id", id);
-    query.exec();
-    while(query.next()){
-        ReceiptRecord record;
-        record.setIngredientName(query.value(0).toString());
-        record.setIngredientWeight(query.value(1).toFloat());
-        mData->append(record);
-    }
-    qDebug() << "query prepared string: " << query.executedQuery();
-    qDebug() << "model receipt - loaded record count=" << mData->size();
+    mData->append(ReceiptRecord(ingredName, 0.0));
 }
+
+//void ModelReceipt::loadFromDB(int id)
+//{
+//    QSqlQuery query;
+//    qDebug() << "modelreceipt prepare query";
+//    query.prepare("SELECT ingredient, weight FROM receipt WHERE analysisid=:id;");
+//    query.bindValue(":id", id);
+//    query.exec();
+//    qDebug() << "modelreceipt executed query";
+//    while(query.next()){
+//        ReceiptRecord record;
+//        qDebug() << "value 1:" << query.value(0).toString() <<
+//                    "value 2:" << query.value(1).toString();
+//        record.setIngredientName(query.value(0).toString());
+//        record.setIngredientWeight(query.value(1).toFloat());
+//        mData->append(record);
+//    }
+//    qDebug() << "query prepared string: " << query.executedQuery();
+//    qDebug() << "model receipt - loaded record count=" << mData->size();
+//}

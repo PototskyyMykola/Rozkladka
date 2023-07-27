@@ -3,12 +3,17 @@
 
 #include <QDate>
 
+#include "receiptrecord.h"
+
+class ReceiptRecord;
+
 class Analysis
 {
 public:
     Analysis();
 
     void clear();
+    void getReceiptFromDB();
 
     void setID(int id)              {mID = id;}
     void setIstance(QString inst)   {mInstance = inst;}
@@ -22,6 +27,7 @@ public:
     QString getDishName()   const {return mDishName;}
     QDate getDate()         const {return mDate;}
     float getWeignt()       const {return mWeight;}
+    QVector<ReceiptRecord>* getReceipt() {return &receipt;};
 
 private:
     int     mID;
@@ -30,5 +36,6 @@ private:
     QDate   mDate;
     float   mWeight;
     // add "Netto", "Proteins", "Fats" and others
+    QVector<ReceiptRecord> receipt;
 };
 #endif // ANALYSIS_H

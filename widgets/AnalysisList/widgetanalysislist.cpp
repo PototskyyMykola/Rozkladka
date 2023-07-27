@@ -18,6 +18,11 @@ WidgetAnalysisList::WidgetAnalysisList(QWidget *parent)
     currentAnalysis = new Analysis;
 }
 
+void WidgetAnalysisList::analysisEdit()
+{
+
+}
+
 void WidgetAnalysisList::createUI()
 {
     QHBoxLayout *widgetLayout = new QHBoxLayout;
@@ -105,11 +110,16 @@ void WidgetAnalysisList::slotAanalysisNew()
 void WidgetAnalysisList::slotAnalysisEdit()
 {
     currentAnalysis = getSelectedAnalysis();
-    qDebug() << currentAnalysis->getID();
+//    currentAnalysis->
+    qDebug() << "Widget AnalysisList -> dialog analysisEdit with ID=" << currentAnalysis->getID();
     DialogAnalysisEdit dialogEdit(currentAnalysis);
     if(dialogEdit.exec()){
+        qDebug() << "Widget AnalysisList -> dialog receiptEdit with ID=" << currentAnalysis->getID();
+        currentAnalysis->getReceiptFromDB();
         DialogReceiptEdit dialogReceiptEdit(currentAnalysis);
+        qDebug() << "Widget AnalysisList -> dialog created";
         dialogReceiptEdit.exec();
+        qDebug() << "Widget AnalysisList -> dialog executed";
     }
 }
 

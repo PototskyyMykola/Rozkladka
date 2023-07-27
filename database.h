@@ -74,10 +74,16 @@ void fixDB(){
                "weight float);");
 
     query.exec("CREATE TABLE receipt("
-               "id int,"
+//               "id int,"
                "analysisid int,"
                "ingredient varchar(255),"
-               "weight float);");
+               "weight float,"
+               "wastes float,"
+               "netto float,"
+               "water float,"
+               "proteins float,"
+               "fats float,"
+               "carbons float);");
 
     query.exec("CREATE TABLE ingredient("
                "id int,"
@@ -100,58 +106,58 @@ void insertExampleDataToDB(){
     analysisExampleData << "INSERT INTO analysis (id, instance, dishname, date, weight) VALUES (4, 'ЗШ с.Муроване', 'обід - макарони, курка, ікра', '2014-04-14', 210);";
     analysisExampleData << "INSERT INTO analysis (id, instance, dishname, date, weight) VALUES (5, 'Опільський НВК', 'перша страва', '2014-04-04', 250);";
 
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (1, 1, 'Крупа пшенична Артек', 58);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (2, 1, 'Сіль', 3.75);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (3, 1, 'Курка бройлер 1 кат.', 83);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (4, 1, 'Морква', 5);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (5, 1, 'Цибуля ріпчата', 5);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (6, 1, 'Олія соняшникова', 5);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (7, 1, 'Томатна паста', 2.8);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (8, 1, 'Мука пшенична в.с.', 2);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (9, 1, 'Сіль', 2);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (10, 1, 'Масло Селянське', 5.25);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (11, 1, 'Огірки грунтові', 35);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (1, 1, 'Крупа пшенична Артек', 58);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (2, 1, 'Сіль', 3.75);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (3, 1, 'Курка бройлер 1 кат.', 83);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (4, 1, 'Морква', 5);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (5, 1, 'Цибуля ріпчата', 5);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (6, 1, 'Олія соняшникова', 5);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (7, 1, 'Томатна паста', 2.8);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (8, 1, 'Мука пшенична в.с.', 2);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (9, 1, 'Сіль', 2);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (10, 1, 'Масло Селянське', 5.25);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (11, 1, 'Огірки грунтові', 35);";
 
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (12, 2, 'Капуста білокачанна', 150);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (13, 2, 'Курка бройлер 1 кат.', 80);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (14, 2, 'Крупа рисова', 15);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (15, 2, 'Томатна паста', 5);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (16, 2, 'Цибуля ріпчата', 10);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (17, 2, 'Морква', 20);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (18, 2, 'Масло Селянське', 5);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (19, 2, 'Сметана 20%', 10);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (12, 2, 'Капуста білокачанна', 150);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (13, 2, 'Курка бройлер 1 кат.', 80);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (14, 2, 'Крупа рисова', 15);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (15, 2, 'Томатна паста', 5);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (16, 2, 'Цибуля ріпчата', 10);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (17, 2, 'Морква', 20);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (18, 2, 'Масло Селянське', 5);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (19, 2, 'Сметана 20%', 10);";
 
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (20, 3, 'Мука пшенична 1с.', 13);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (21, 3, 'Цукор', 1);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (22, 3, 'Яйце куряче', 3.5);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (23, 3, 'Олія соняшникова', 3);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (24, 3, 'Сир нежирний', 9.1);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (25, 3, 'Повидло яблучне', 1);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (20, 3, 'Мука пшенична 1с.', 13);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (21, 3, 'Цукор', 1);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (22, 3, 'Яйце куряче', 3.5);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (23, 3, 'Олія соняшникова', 3);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (24, 3, 'Сир нежирний', 9.1);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (25, 3, 'Повидло яблучне', 1);";
 
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (26, 4, 'Масло Селянське', 3.5);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (27, 4, 'Макарон в.с.', 35);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (28, 4, 'Сіль', 1.5);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (29, 4, 'Курка бройлер 1 кат.', 75);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (30, 4, 'Олія соняшникова', 2);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (31, 4, 'Сметана 20%', 5);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (32, 4, 'Мука пшенична в.с.', 4);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (33, 4, 'Сіль', 1);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (34, 4, 'Масло Селянське', 1.5);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (35, 4, 'Олія соняшникова', 6);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (36, 4, 'Цукор', 0.8);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (37, 4, 'Цибуля ріпчата', 8);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (38, 4, 'Буряк', 60);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (39, 4, 'Сіль', 0.8);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (40, 4, 'Лимон', 0.01);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (26, 4, 'Масло Селянське', 3.5);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (27, 4, 'Макарон в.с.', 35);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (28, 4, 'Сіль', 1.5);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (29, 4, 'Курка бройлер 1 кат.', 75);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (30, 4, 'Олія соняшникова', 2);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (31, 4, 'Сметана 20%', 5);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (32, 4, 'Мука пшенична в.с.', 4);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (33, 4, 'Сіль', 1);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (34, 4, 'Масло Селянське', 1.5);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (35, 4, 'Олія соняшникова', 6);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (36, 4, 'Цукор', 0.8);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (37, 4, 'Цибуля ріпчата', 8);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (38, 4, 'Буряк', 60);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (39, 4, 'Сіль', 0.8);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (40, 4, 'Лимон', 0.01);";
 
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (41, 5, 'Масло Селянське', 5);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (42, 5, 'Сметана 20%', 5);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (43, 5, 'Горошок консервований', 11.5);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (44, 5, 'Картопля (01.03-31.06)', 67);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (45, 5, 'Цибуля ріпчата', 12);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (46, 5, 'Морква', 12.5);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (47, 5, 'Сіль', 1.5);";
-    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (48, 5, 'Капуста білокачанна', 25);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (41, 5, 'Масло Селянське', 5);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (42, 5, 'Сметана 20%', 5);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (43, 5, 'Горошок консервований', 11.5);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (44, 5, 'Картопля (01.03-31.06)', 67);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (45, 5, 'Цибуля ріпчата', 12);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (46, 5, 'Морква', 12.5);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (47, 5, 'Сіль', 1.5);";
+//    analysisExampleData << "INSERT INTO receipt (id, analysisid, ingredient, weight) VALUES (48, 5, 'Капуста білокачанна', 25);";
 
 
     analysisExampleData << "INSERT INTO ingredient (id, name, waist, proteins, fats, carbons, energy) VALUES (1, 'Буряк', 20, 1.5, 0.1, 9.1, 42);";

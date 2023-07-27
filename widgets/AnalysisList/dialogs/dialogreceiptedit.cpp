@@ -7,9 +7,13 @@
 
 DialogReceiptEdit::DialogReceiptEdit(Analysis *analysis)
 {
+    qDebug() << "Dialog ReceiptEdit - constructor";
     currentAnalysis = analysis;
+    qDebug() << "Dialog ReceiptEdit - constructor - analysis defined";
     createModels();
+    qDebug() << "Dialog ReceiptEdit - constructor - models created";
     createUI();
+    qDebug() << "Dialog ReceiptEdit - constructor - UI created";
 }
 
 void DialogReceiptEdit::createUI()
@@ -26,8 +30,14 @@ void DialogReceiptEdit::createUI()
     tvReceipt->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
 
     btnAddIngredient = new QPushButton(tr("Add"));
+    connect(btnAddIngredient, &QPushButton::clicked, this, &DialogReceiptEdit::btnAddIngredientClicked);
+
     btnRemoveIngredient = new QPushButton(tr("Remove"));
+    connect(btnRemoveIngredient, &QPushButton::clicked, this, &DialogReceiptEdit::btnRemoveIngredientClicked);
+
     btnCalculate = new QPushButton(tr("Calculate"));
+    connect(btnCalculate, &QPushButton::clicked, this, &DialogReceiptEdit::btnCalculateClicked);
+
     btnCancel = new QPushButton(tr("Cancel"));
 
     QVBoxLayout *buttonsLayout = new QVBoxLayout;
@@ -45,7 +55,25 @@ void DialogReceiptEdit::createUI()
 void DialogReceiptEdit::createModels()
 {
     modelIngredientList = new ModelIngredientList;
-    qDebug() << "created ingredient list model";
-    modelReceipt = new ModelReceipt(currentAnalysis->getID());
-    qDebug() << "created receipt model with ID=" << currentAnalysis->getID();
+    qDebug() << "Dialog ReceiptEdit - created ingredient list model";
+    modelReceipt = new ModelReceipt(currentAnalysis->getReceipt());
+    qDebug() << "Dialog ReceiptEdit - created receipt model with ID=" << currentAnalysis->getID();
+}
+
+void DialogReceiptEdit::btnAddIngredientClicked()
+{
+    // get ingredient name from tvIngredients and add it to receipt model
+    modelReceipt->addIngredient(tvIngredients->currentIndex().data().toString());
+
+}
+
+void DialogReceiptEdit::btnRemoveIngredientClicked()
+{
+    // remve selected record in receipt model
+}
+
+void DialogReceiptEdit::btnCalculateClicked()
+{
+    // calculate dependent rows in receipt model
+
 }

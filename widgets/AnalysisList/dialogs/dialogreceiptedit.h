@@ -32,9 +32,12 @@ private:
     Analysis *currentAnalysis;
 
     QAbstractTableModel *modelIngredientList;
-    QAbstractTableModel *modelReceipt;
+    ModelReceipt *modelReceipt;
 private slots:
     void onAccepted();
+    void btnAddIngredientClicked();
+    void btnRemoveIngredientClicked();
+    void btnCalculateClicked();
 };
 
 #endif // DIALOGRECEIPTEDIT_H

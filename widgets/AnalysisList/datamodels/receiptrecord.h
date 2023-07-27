@@ -9,10 +9,13 @@ public:
     ReceiptRecord();
     ReceiptRecord(QString, float);
     QString getIngredientName() const;
-    void setIngredientName(const QString &newIngredientName);
-
+    void  setIngredientName(const QString &newIngredientName);
+//    int   getId() const;
+//    void  setId(int newId);
+    int   getAnalysisId() const;
+    void  setAnalysisId(int newAnalysisId);
     float getIngredientWeight() const;
-    void setIngredientWeight(float newIngredientWeight);
+    void  setIngredientWeight(float newIngredientWeight);
 
     float getWastes() const;
     float getNetto() const;
@@ -21,9 +24,15 @@ public:
     float getFats() const;
     float getCarbons() const;
 
+    void calculate();
+    void getdatafromDB();
+    QString generateSQLInsert();
+
 private:
+//    int id;
+    int analysisId;
     QString ingredientName;
-    float   ingredientWeight;
+    float   ingredientWeight;  // brutto
 
     float wastes;
     float netto;
